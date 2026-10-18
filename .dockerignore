@@ -1,0 +1,11 @@
+data/
+outputs/tensorboard/
+outputs/logs/
+outputs/gradcam/
+outputs/reports/
+outputs/figures/
+.git
+__pycache__
+*.pyc
+.venv
+notebooks/

@@ -1,0 +1,12 @@
+# Run both services locally:  docker compose up --build
+#   API + HTML page: http://localhost:8000      Streamlit: http://localhost:8501
+services:
+  api:
+    build: { context: ., dockerfile: deploy/Dockerfile.api }
+    environment: [PORT=8000]
+    ports: ["8000:8000"]
+  ui:
+    build: { context: ., dockerfile: deploy/Dockerfile.streamlit }
+    environment: [PORT=8501, API_URL=http://api:8000]
+    ports: ["8501:8501"]
+    depends_on: [api]

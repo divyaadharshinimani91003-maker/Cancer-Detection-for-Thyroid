@@ -1,0 +1,9 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-f", "deploy/Dockerfile.api", "-t", "${_REGISTRY}/api:latest", "."]
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-f", "deploy/Dockerfile.streamlit", "-t", "${_REGISTRY}/ui:latest", "."]
+images:
+  - ${_REGISTRY}/api:latest
+  - ${_REGISTRY}/ui:latest
+timeout: 1800s

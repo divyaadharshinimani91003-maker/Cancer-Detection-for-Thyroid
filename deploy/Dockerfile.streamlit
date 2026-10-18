@@ -1,0 +1,16 @@
+# Streamlit UI - talks to the API service via API_URL
+# Build from the project root:  docker build -f deploy/Dockerfile.streamlit -t thyrocheck-ui .
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PORT=8080
+WORKDIR /app
+RUN pip install --no-cache-dir streamlit requests pandas numpy pillow pyyaml
+
+COPY configs/ configs/
+COPY src/thyrocheck/__init__.py src/thyrocheck/config.py src/thyrocheck/
+COPY app/ app/
+
+ENV PYTHONPATH=/app/src
+EXPOSE 8080
+# The UI container has no TensorFlow, so choose "FastAPI backend" mode in the sidebar.
+CMD ["sh", "-c", "streamlit run app/streamlit_app.py --server.port ${PORT} --server.address 0.0.0.0 --server.headless true"]

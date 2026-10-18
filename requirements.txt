@@ -1,0 +1,31 @@
+# Core ML
+tensorflow>=2.16             # on a machine without a GPU you can use tensorflow-cpu
+keras>=3.0
+tensorboard
+numpy
+pandas
+scikit-learn
+opencv-python-headless
+pillow
+matplotlib
+pyyaml
+
+# Data
+kagglehub
+
+# XAI + reporting
+python-docx
+
+# Serving
+fastapi
+uvicorn[standard]
+python-multipart
+streamlit
+requests
+
+# Sharing
+huggingface_hub
+
+# Dev
+pytest
+httpx
